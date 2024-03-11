@@ -21,7 +21,7 @@ Welcome to our GitHub page on "Launching Scalable Web Services on GCP using MIGs
 |---------|-------------|
 | `gcloud auth login` | Authenticates your Google Cloud CLI session, enabling interaction with your GCP account. |
 | `gcloud auth application-default login` | Sets up default credentials for application use, simplifying development and testing on GCP. |
-| `gcloud config set project nishanta-banik` | Configures the current working project to `nishanta-banik`, focusing all subsequent commands on this project. |
+| `gcloud config set project mig-project` | Configures the current working project to `mig-project`, focusing all subsequent commands on this project. |
 | `gcloud config set compute/zone europe-central2-b` | Sets the compute zone to `europe-central2-b` for the current project, which is important for resource location and latency. |
 | `gcloud compute instances create myinstance` | Creates a new compute instance named `myinstance`, serving as a base for our web service. |
 | `gcloud compute firewall-rules create allow-80 --allow tcp:80` | Sets up a firewall rule named `allow-80` to permit HTTP traffic on port 80, essential for web service accessibility. |
@@ -36,8 +36,9 @@ apt-get update  # Updates package lists for upgrades and new package installatio
 apt-get install -y nginx  # Installs Nginx, a high-performance web server.
 service nginx start  # Starts the Nginx service, making the web server active.
 apt-get install -y wget  # Installs wget, a utility for downloading files from the web.
-
 wget -q -O - localhost:80 | grep nginx  # Tests Nginx installation by fetching the default page and looking for "nginx".
+
+We can even try browsing the external ip of "myinstance" to see the live Nginx webpage
 ```
 
 ### Finalizing the Setup
@@ -51,7 +52,7 @@ wget -q -O - localhost:80 | grep nginx  # Tests Nginx installation by fetching t
 | `gcloud compute instance-groups managed resize nginx-group --zone=europe-central2-b --size 1` | Manually adjusts the size of the managed instance group, useful for immediate scaling needs. |
 | `gcloud compute instance-groups managed set-autoscaling nginx-group --zone=europe-central2-b --min-num-replicas=3 --max-num-replicas=7` | Configures autoscaling for the instance group, ensuring dynamic resizing based on load. |
 | `gcloud compute instances list` | Lists all compute instances, providing an overview of current resources. |
-| `gcloud compute forwarding-rules create nginx-lb --ports 80 --target-pool nginx-pool` | Sets up a load balancer to distribute incoming traffic across instances in the pool. We can access the Loadbalancer IP via a Browser and see how it automatically dirtributes the load across different Nodes|
+| `gcloud compute forwarding-rules create nginx-lb --ports 80 --target-pool nginx-pool` | Sets up a load balancer to distribute incoming traffic across instances in the pool. We can access the Loadbalancer IP via a Browser and see how it automatically dirtributes the Nginx load across different Nodes (keep your eyes on the suffix part with Node ID)|
 
 ### Cleanup Commands
 
