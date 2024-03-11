@@ -67,3 +67,15 @@ We can even try browsing the external ip of "myinstance" to see the live Nginx w
 | `gcloud compute firewall-rules delete allow-80 --quiet` | Removes the firewall rule that allowed HTTP traffic, securing the network. |
 
 This guide provides a roadmap for deploying scalable and resilient web services using Managed Instance Groups on GCP, incorporating best practices for setup, management, and scalability. Whether you're deploying a new application or scaling an existing one, following these steps and commands will help ensure a successful and efficient deployment on Google Cloud Platform.
+
+
+### Engage with Us
+
+Your curiosity and eagerness to learn drive us to create more content that breaks down technological barriers. If you've found this guide useful, we'd love to hear your thoughts and questions. Engaging with our content helps us understand your needs better and tailor our future guides to suit your interests.
+
+If interested, please refer to the Video version of this page: https://www.youtube.com/watch?v=GCImELp8bAU&t=76s
+
+
+### Closing
+
+Thank you for exploring "Launching Scalable Web Services on GCP using MIGs". We're passionate about making complex technologies accessible and hope this guide has equipped you with the knowledge to confidently use KinD for your Kubernetes endeavors. Stay tuned for more guides and tutorials designed to help you navigate the evolving tech landscape.
