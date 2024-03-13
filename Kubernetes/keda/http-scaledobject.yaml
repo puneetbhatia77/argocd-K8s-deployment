@@ -2,14 +2,14 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: http-server-scaler
-  namespace: default
+  namespace: keda
 spec:
   scaleTargetRef:
     name: http-server
   minReplicaCount: 1
-  maxReplicaCount: 10
+  maxReplicaCount: 100
   triggers:
     - type: cpu
       metadata:
         type: Utilization
-        value: "30" # Target CPU utilization percentage
+        value: "5" # Target CPU utilization percentage

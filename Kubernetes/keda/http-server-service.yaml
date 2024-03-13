@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: http-server
-  namespace: default  # Ensure this matches the namespace of your deployment
+  namespace: keda  # Ensure this matches the namespace of your deployment
 spec:
   type: LoadBalancer
   ports:
