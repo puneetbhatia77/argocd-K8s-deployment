@@ -1,5 +1,5 @@
 
----
+
 
 # Kubernetes (GKE) Observability Setup Guide
 
@@ -124,4 +124,3 @@ By leveraging pre-built dashboards, you can expedite the setup process and gain 
 Congratulations! You've successfully set up monitoring and observability for your Kubernetes cluster. Explore the imported dashboards and gain valuable insights into your cluster's performance.
 
 
----
