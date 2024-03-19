@@ -50,7 +50,7 @@ gcloud container clusters get-credentials my-cluster --zone us-central1-a --proj
 5. **`gcloud container clusters get-credentials my-cluster --zone us-central1-a --project gke-project`**: Retrieves cluster credentials for `my-cluster` in the `us-central1-a` zone and sets the appropriate project.
 
 
-### **Note: _Here we are using GKE by running the above commands, you can use the Prometheus-Grafana Observability stack for EKS (AWS) and AKS (Azure) by running the below-mentioned commands. Just make sure your EKS or AKS cluster is ready._** 
+### **Note: _Here we are using GKE by running the above commands, you can use the Prometheus-Grafana Observability stack for EKS (AWS), AKS (Azure) and Kind (or any other local or managed K8s cluster) by running the below-mentioned commands. Just make sure your EKS, AKS or Kind cluster is ready._** 
 
 ## Installation of Monitoring Tools
 
