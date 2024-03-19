@@ -1,14 +1,13 @@
-Certainly! Let's integrate the missing commands and details into the GitHub page format:
 
 ---
 
-# Kubernetes Observability Setup Guide
+# Kubernetes (GKE) Observability Setup Guide
 
 ## Introduction
 
 Welcome to the Kubernetes Observability Setup Guide! In this guide, we'll walk you through setting up monitoring and observability for your Kubernetes cluster using Prometheus, Grafana, and some handy tools. Whether you're a seasoned Kubernetes user or just getting started, this guide will help you gain insights into your cluster's health and performance.
 
-![Kubernetes Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)
+![Kubernetes Logo](https://media.licdn.com/dms/image/C5612AQFqPzlOaOvwbw/article-cover_image-shrink_720_1280/0/1606979524095?e=1716422400&v=beta&t=fS9U_3WFoBEaCUd9-UYd--iR96_OSotTk5ZasxhmFDY)
 
 ## Table of Contents
 
@@ -50,6 +49,9 @@ gcloud container clusters get-credentials my-cluster --zone us-central1-a --proj
 4. **`gcloud container clusters create my-cluster --zone us-central1-a --num-nodes=1`**: Creates a Kubernetes cluster named `my-cluster` with one node in the `us-central1-a` zone.
 5. **`gcloud container clusters get-credentials my-cluster --zone us-central1-a --project gke-project`**: Retrieves cluster credentials for `my-cluster` in the `us-central1-a` zone and sets the appropriate project.
 
+
+### **Note: _Here we are using GKE by running the above commands, you can use the Prometheus-Grafana Observability stack for EKS (AWS) and AKS (Azure) by running the below-mentioned commands. Just make sure your EKS or AKS cluster is ready._** 
+
 ## Installation of Monitoring Tools
 
 ```bash
@@ -72,6 +74,8 @@ kubectl edit service prometheus-grafana -n monitoring
 ```
 
 10. Edit the service configurations for Prometheus and Grafana in the "monitoring" namespace to change the service type from ClusterIP to LoadBalancer for external access.
+    We will not change the service type from ClusterIP to LoadBalancer for "prometheus-kube-prometheus-prometheus" service, WHY?? Because we'll access Prometheus using port-forwarding but we'll
+    certainly change the service type from ClusterIP to LoadBalancer "prometheus-grafana" service, to show you, how you can access the services via the LoadBalancer service-type feature.
 
 ## Additional Steps
 
