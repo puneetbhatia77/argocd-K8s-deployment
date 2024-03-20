@@ -41,6 +41,7 @@ Install Argo CD in your cluster:
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get all -n argocd
 ```
 
 ## Exposing Argo CD UI
@@ -55,20 +56,25 @@ Alternatively, expose it via a LoadBalancer:
 
 ```bash
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl get service -n argocd | grep argocd-server
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
 ```
 
 ## Deploying an Application with Argo CD
 
-1. **Fork the sample repository**: Fork [this sample repository](https://github.com/your-username/gitops-sample) containing a simple Nginx deployment.
+1. **Fork the sample repository**: Fork [this sample repository](https://github.com/nishantabanik/YT-Video-Series.git) containing a simple Nginx deployment (Directory path: GCP-Google Cloud/GitOps/GitOps using ArgoCD/sample-app/nginx-deployment.yaml).
 
 2. **Create an Argo CD application**: Pointing to your forked repository.
 
 ```bash
+
 argocd app create nginx-deployment \
-  --repo https://github.com/<your-username>/gitops-sample.git \
-  --path k8s-manifests \
+  --repo https://github.com/nishantabanik/YT-Video-Series.git \
+  --path "GCP-Google Cloud/GitOps/GitOps using ArgoCD/sample-app" \
   --dest-server https://kubernetes.default.svc \
   --dest-namespace default
+
 ```
 
 3. **Sync the application**: To deploy Nginx to your cluster.
@@ -82,20 +88,9 @@ argocd app sync nginx-deployment
 To upgrade or downgrade Nginx:
 
 1. **Edit `nginx-deployment.yaml`** in your repository, changing the Nginx image version.
-2. **Commit and push** the changes to your repository.
-3. Argo CD will automatically detect the changes and apply them, upgrading or downgrading Nginx in your cluster.
+2. **Commit and push** the changes to your repository via Git commit and push command.
+3. Argo CD will Not automatically detect the changes and apply them, upgrading or downgrading Nginx in your cluster.
 
-### Example: Upgrading Nginx
-
-Change the image in `nginx-deployment.yaml`:
-
-```yaml
-containers:
-- name: nginx
-  image: nginx:1.20.0
-```
-
-Commit and push, then watch Argo CD perform the upgrade.
 
 ### Example: Downgrading Nginx
 
@@ -107,7 +102,20 @@ containers:
   image: nginx:1.19.0
 ```
 
-Commit and push, then watch Argo CD perform the downgrade.
+Commit and push via Git commit and push command, then watch Argo CD perform the downgrade.
+
+
+### Example: Upgrading Nginx
+
+Change the image in `nginx-deployment.yaml`:
+
+```yaml
+containers:
+- name: nginx
+  image: nginx:1.20.0
+```
+
+Commit and push via Git commit and push command, then watch Argo CD perform the upgrade.
 
 ## Conclusion
 
