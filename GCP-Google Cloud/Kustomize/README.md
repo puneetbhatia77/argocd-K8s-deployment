@@ -4,6 +4,7 @@
 
 Welcome to the Kustomize GitOps Implementation Guide for managing Kubernetes configurations! This tutorial is crafted to guide you through using Kustomize, a Kubernetes-native configuration management tool, to manage and deploy applications across different environments (development and production) without altering the base YAML files. Whether you're new to Kubernetes or looking to streamline your deployment process, this guide will introduce the principles of GitOps with Kustomize to achieve efficient, declarative configuration management.
 
+
 ![Kustomize Logo](https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F7szhk49k18jr9yjxyomd.png)
 
 ## Table of Contents
