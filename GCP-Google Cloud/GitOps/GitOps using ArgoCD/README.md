@@ -10,7 +10,7 @@ Welcome to the Argo CD GitOps Implementation Guide for Google Kubernetes Engine 
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
-2. [Creating a GKE Cluster](#creating-a-gke-cluster)
+2. [Creating a GKE/AKS Cluster](#creating-a-gke/aks-cluster)
 3. [Installing Argo CD](#installing-argo-cd)
 4. [Exposing Argo CD UI](#exposing-argo-cd-ui)
 5. [Deploying an Application with Argo CD](#deploying-an-application-with-argo-cd)
