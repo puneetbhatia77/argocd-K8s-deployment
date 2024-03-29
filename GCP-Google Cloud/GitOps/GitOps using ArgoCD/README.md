@@ -77,9 +77,8 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 2. **Create an Argo CD application**: Pointing to your forked repository.
 
-Please refer https://argo-cd.readthedocs.io/en/stable/cli_installation/ to install argocd tool in case its not installed on your machine.
+Please refer https://argo-cd.readthedocs.io/en/stable/cli_installation/ to install argocd tool in case its not installed on your machine. And replace IP and password as per your respective values before running below command.
 
-Please replace IP and password as per your respective values
 ```bash
 
 argocd login  52.154.68.76 --username admin --password wc6Sq-Kiec5KfQ8M  
