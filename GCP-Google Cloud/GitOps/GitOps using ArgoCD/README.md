@@ -81,6 +81,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 argocd login  52.154.68.76 --username admin --password wc6Sq-Kiec5KfQ8M   //Please replace IP and password as per your respective values
 
+Note: Please refer https://argo-cd.readthedocs.io/en/stable/cli_installation/ to install argocd tool in case its not installed on your machine.
 argocd app create nginx-deployment \
   --repo https://github.com/puneetbhatia77/argocd-K8s-deployment.git \
   --path "GCP-Google Cloud/GitOps/GitOps using ArgoCD/sample-app" \
