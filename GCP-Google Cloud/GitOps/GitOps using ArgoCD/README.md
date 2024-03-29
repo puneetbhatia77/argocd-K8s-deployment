@@ -1,9 +1,9 @@
 
-# Argo CD GitOps Implementation in GKE
+# Argo CD GitOps Implementation in GKE/AKS
 
 ## Introduction
 
-Welcome to the Argo CD GitOps Implementation Guide for Google Kubernetes Engine (GKE)! This guide will walk you through setting up a GitOps workflow using Argo CD, a declarative, Git-based continuous delivery tool for Kubernetes. Whether you're new to Kubernetes or have some experience, this guide aims to provide you with a clear path to implement GitOps principles in your GKE cluster, including application deployment, upgrades, and downgrades.
+Welcome to the Argo CD GitOps Implementation Guide for Google Kubernetes Engine (GKE) or Azure Kubernetes Cluster (AKS)! This guide will walk you through setting up a GitOps workflow using Argo CD, a declarative, Git-based continuous delivery tool for Kubernetes. Whether you're new to Kubernetes or have some experience, this guide aims to provide you with a clear path to implement GitOps principles in your GKE cluster, including application deployment, upgrades, and downgrades.
 
 ![Argo CD Logo](https://argo-cd.readthedocs.io/en/stable/assets/argo.png)
 
@@ -21,17 +21,27 @@ Welcome to the Argo CD GitOps Implementation Guide for Google Kubernetes Engine 
 
 Before starting, ensure you have:
 
-- A Google Cloud Platform (GCP) account.
-- `gcloud`, `kubectl`, and `helm` installed and configured on your machine.
+- A Google Cloud Platform (GCP) or Azure account.
+- `gcloud` or `azcli`, `kubectl`, and `helm` installed and configured on your machine.
 - Basic familiarity with Kubernetes and Git concepts.
 
-## Creating a GKE Cluster
+## Creating a GKE/AKS Cluster
 
 Create a GKE cluster and configure `kubectl` to use it:
 
 ```bash
 gcloud container clusters create gitops-cluster --zone us-central1-a --num-nodes=3 --machine-type=e2-medium
 gcloud container clusters get-credentials gitops-cluster --zone us-central1-a
+```
+or 
+
+Create a GKE cluster and configure `kubectl` to use it:
+
+```bash
+az group create --name myResourceGroup --location eastus
+az aks create --resource-group myResourceGroup --name myAKSCluster --enable-managed-identity --node-count 1 --generate-ssh-keys
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+kubectl get nodes
 ```
 
 ## Installing Argo CD
@@ -63,14 +73,16 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ## Deploying an Application with Argo CD
 
-1. **Fork the sample repository**: Fork [this sample repository](https://github.com/nishantabanik/YT-Video-Series.git) containing a simple Nginx deployment (Directory path: GCP-Google Cloud/GitOps/GitOps using ArgoCD/sample-app/nginx-deployment.yaml).
+1. **Fork the sample repository**: Fork [this sample repository](https://github.com/puneetbhatia77/argocd-K8s-deployment.git) containing a simple Nginx deployment (Directory path: GCP-Google Cloud/GitOps/GitOps using ArgoCD/sample-app/nginx-deployment.yaml).
 
 2. **Create an Argo CD application**: Pointing to your forked repository.
 
 ```bash
 
+argocd login  52.154.68.76 --username admin --password wc6Sq-Kiec5KfQ8M   //Please replace IP and password as per your respective values
+
 argocd app create nginx-deployment \
-  --repo https://github.com/nishantabanik/YT-Video-Series.git \
+  --repo https://github.com/puneetbhatia77/argocd-K8s-deployment.git \
   --path "GCP-Google Cloud/GitOps/GitOps using ArgoCD/sample-app" \
   --dest-server https://kubernetes.default.svc \
   --dest-namespace default
